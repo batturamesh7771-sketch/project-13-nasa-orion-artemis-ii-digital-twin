@@ -1,105 +1,122 @@
-# <p align="center"><img src="https://images-assets.nasa.gov/image/PIA12235/PIA12235~orig.jpg" width="100%" alt="NASA Artemis II Banner" style="border-radius: 10px; max-height: 380px; object-fit: cover;" /></p>
+<p align="center">
+  <img src="gallery_and_media/browser_live_mission_readouts.png" width="100%" alt="NASA Orion Artemis II Digital Twin Live WebGL Mission Control Banner" style="border-radius: 12px; box-shadow: 0px 4px 20px rgba(0,0,0,0.6); max-height: 480px; object-fit: cover;" />
+</p>
 
 <h1 align="center">🚀 NASA Orion Artemis II Digital Twin</h1>
-<h3 align="center">A Physics-Driven, Flight-Fidelity Orbital & 6-DoF Mission Control Twin</h3>
+<h3 align="center">High-Fidelity Physics-Driven Mission Control & 6-DoF Flight Simulation</h3>
+
+<p align="center">
+  <a href="http://127.0.0.1:8000/"><img src="https://img.shields.io/badge/⚡_LIVE_WEBGL_MISSION_CONTROL-OPEN_SIMULATION-00e5ff?style=for-the-badge&logo=googlechrome&logoColor=black" alt="Live WebGL Simulation" /></a>
+  <a href="http://127.0.0.1:8000/#theater"><img src="https://img.shields.io/badge/🎬_FULLSCREEN_3D_THEATER-EXPLORE-ff007f?style=for-the-badge&logo=three.js&logoColor=white" alt="3D Theater View" /></a>
+</p>
 
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/Author-Elonikhil-0052cc?style=for-the-badge&logo=github" alt="Author" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/NASA-GMAT%20%7C%20SPICE%20%7C%20OpenMCT-blue?style=for-the-badge&logo=nasa" alt="NASA Tech" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/Rendering-WebGL%20%2F%20Three.js-orange?style=for-the-badge&logo=three.js" alt="Three.js" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/Backend-FastAPI%20%7C%20WebSockets-teal?style=for-the-badge&logo=fastapi" alt="FastAPI" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/Status-Flight%20Validated-success?style=for-the-badge" alt="Status" /></a>
-</p>
-
-<p align="center">
-  <strong>An end-to-end aerospace digital twin of NASA's Orion Multi-Purpose Crew Vehicle (MPCV) for the crewed Artemis II lunar flyby mission. Integrates numerical trajectory propagation (GMAT/SPICE), 6-DoF attitude kinematics (Trick simulation standard), AE9/AP9 radiation dosimetry, real-time 10 Hz telemetry streaming, binaural cockpit soundscape, interactive Primary Flight Displays (PFD), Avcoat aerothermal skip-reentry heatmaps, Deep Space Network (DSN) link physics, and NASA Open MCT mission control layouts.</strong>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/NASA-GMAT%20%7C%20SPICE%20%7C%20OpenMCT-0b3d91?style=for-the-badge&logo=nasa" alt="NASA Standards" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/WebGL-Three.js%20PBR%20Engine-ff6600?style=for-the-badge&logo=three.js" alt="Three.js Engine" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/Telemetry-10%20Hz%20FastAPI%20WebSockets-009688?style=for-the-badge&logo=fastapi" alt="Telemetry" /></a>
 </p>
 
 ---
 
-## 🌌 Project Gallery & Visualizations
+## ⚡ Direct Quick-Access Testing Links (Local Dev Server)
 
-| AIM 1: Pad 39B Liftoff & Ascent | AIM 2: Earth-Moon Lunar Orbit | AIM 3: Skip Reentry & Parachutes |
-|:---:|:---:|:---:|
-| <img src="gallery_and_media/aim1_launch_pad_view.png" width="280" /> | <img src="gallery_and_media/aim2_earth_moon_lunar_orbit.png" width="280" /> | <img src="gallery_and_media/aim3_4_main_parachutes.png" width="280" /> |
+> [!TIP]
+> Run `python -m web.server` from your terminal to launch the real-time simulation backend. Then click any direct link below to test the WebGL cockpit, theater, and telemetry dashboards smoothly:
 
-| Glass Cockpit PFD Display | Avcoat Aerothermal 5000°F Heatmap | DSN Tracking Antenna Links |
-|:---:|:---:|:---:|
-| <img src="gallery_and_media/area2_cockpit_glass_pfd.png" width="280" /> | <img src="gallery_and_media/area4_avcoat_aerothermal_heatmap.png" width="280" /> | <img src="gallery_and_media/area3_dsn_tracking_beam.png" width="280" /> |
+| View Section | Direct URL | Description & Key Features |
+|:---|:---|:---|
+| 🎛️ **Mission Control Dashboard** | [`http://127.0.0.1:8000/`](http://127.0.0.1:8000/) | Live 10 Hz telemetry gauges, timeline sequence, flight status HUD, and audio toggle. |
+| 🎬 **3D Theater Fullscreen Simulation** | [`http://127.0.0.1:8000/#theater`](http://127.0.0.1:8000/#theater) | Full-screen PBR 3D viewport with multi-touch zoom, pan, free orbit, and "Toggle UI" mode. |
+| 🚀 **Mission Timeline & Liftoff (AIM 1)** | [`http://127.0.0.1:8000/#mission`](http://127.0.0.1:8000/#mission) | SLS Launch Complex 39B, SRB separation, core stage MECO, and parking orbit insertion. |
+| 🌌 **Trajectory & Performance (AIM 2)** | [`http://127.0.0.1:8000/#trajectory`](http://127.0.0.1:8000/#trajectory) | Earth-Moon cislunar orbit, pericynthion flyby, and Deep Space Network (DSN) tracking. |
+| 🔥 **Settings, Abort Modes & Skip Reentry** | [`http://127.0.0.1:8000/#settings`](http://127.0.0.1:8000/#settings) | Avcoat 5,000°F aerothermal heatmap, Flight Path Angle ($\gamma$) corridor chart & AA-2 abort. |
+| 📊 **Data Validation & Ephemeris Export** | [`http://127.0.0.1:8000/#data`](http://127.0.0.1:8000/#data) | One-click export to **CCSDS OEM**, **Google Earth KML**, and high-resolution **CSV**. |
 
 ---
 
-## 🌟 Key Highlights & Engineering Features
+## 📸 WebGL 3D Simulation & Cockpit Visual Gallery
+
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <img src="gallery_and_media/fullscreen_3d_simulation.png" width="100%" style="border-radius: 8px;" /><br />
+      <b>Full-Screen WebGL 3D Simulation (Touch & Orbit Controls)</b>
+    </td>
+    <td align="center" width="50%">
+      <img src="gallery_and_media/area2_cockpit_glass_pfd.png" width="100%" style="border-radius: 8px;" /><br />
+      <b>Orion Interactive Glass Cockpit Primary Flight Display (PFD)</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="gallery_and_media/area4_avcoat_aerothermal_heatmap.png" width="100%" style="border-radius: 8px;" /><br />
+      <b>Avcoat Ablative Heatshield 5,000°F Aerothermal Heatmap</b>
+    </td>
+    <td align="center" width="50%">
+      <img src="gallery_and_media/area3_dsn_tracking_beam.png" width="100%" style="border-radius: 8px;" /><br />
+      <b>Deep Space Network (DSN) Antenna Dish Tracking Links</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="gallery_and_media/aim3_4_main_parachutes.png" width="100%" style="border-radius: 8px;" /><br />
+      <b>AIM 3: Main Parachute Deployment & Reefing Sequence</b>
+    </td>
+    <td align="center" width="50%">
+      <img src="gallery_and_media/aim3_6_cmus_airbags_navy_recovery.png" width="100%" style="border-radius: 8px;" /><br />
+      <b>Pacific Ocean Splashdown, CMUS Airbags & US Navy Recovery</b>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 🌟 Key Highlights & Physics Invariants
 
 ### 1. 🛰️ Trajectory & Astrodynamics (AIM 1 & AIM 2)
-- **NASA GMAT Propagation**: Artemis II high-order gravity model ($16 \times 16$ Earth/Moon spherical harmonics), solar radiation pressure, and third-body point-mass ephemerides.
-- **NAIF SPICE Toolkit Integration**: High-precision planetary ephemeris kernel (`de440s.bsp`) for millimeter-accurate barycentric state vectors.
-- **6-DoF Rigid Body Dynamics**: Quaternion kinematics, mass-depletion physics, and RCS thruster torque matrices based on **NASA Trick Simulation** standards.
-- **Van Allen AE9/AP9 Radiation Environment**: Real-time ionizing proton and electron flux computation for crew biodosimetry.
+- **NASA GMAT Trajectory Engine**: High-order gravity harmonics ($16 \times 16$ spherical harmonics for Earth and Moon), solar radiation pressure, and third-body relativistic perturbations.
+- **NAIF SPICE Ephemeris**: Barycentric planetary positioning via JPL `de440s.bsp` kernel integration in Python (`spiceypy`).
+- **6-DoF Attitude Kinematics**: Rigid-body quaternion propagation, Euler angle transformations, mass-depletion physics, and RCS thruster torque matrices conforming to **NASA Trick Simulation** standards.
+- **AE9/AP9 Ionizing Radiation**: Dynamic proton and electron flux accumulation modeling across the Van Allen belts.
 
-### 2. 🎛️ Mission Control & Cockpit Avionics
-- **10 Hz Real-Time Telemetry Engine**: Powered by asynchronous FastAPI WebSockets with deterministic Mission Elapsed Time (MET) time-warp (1x to 60x).
-- **Interactive Glass Cockpit PFD**: Authentic Primary Flight Display with artificial horizon, pitch ladder, roll pointer, Mach scale, and altitude ladder.
-- **Synthesized Audio & Quindar CAPCOM**: Web Audio API-driven cabin life-support ambiance, thruster bursts, reaction wheel hum, and radio communication calls.
-- **NASA Open MCT Compatible**: Telemetry dictionary and schemas conforming to NASA Mission Control Technologies.
+### 2. 🎛️ Flight Cockpit Avionics & CAPCOM Audio
+- **Interactive Glass Cockpit PFD**: Artificial horizon, pitch ladder, roll pointer, Mach scale, and altitude ladder.
+- **Binaural Web Audio Soundscape**: Synthesized life-support fan ambiance, RCS thruster burst hisses, reaction wheel spool-up, and Quindar-tone CAPCOM voice calls.
+- **Bi-Directional Telemetry at 10 Hz**: Real-time WebSocket streaming with deterministic Mission Elapsed Time (MET) lockstep and time-warp (1x to 60x).
 
 ### 3. 🔥 Skip Reentry & Splashdown Recovery (AIM 3)
 - **Mach 32 Lunar Skip Reentry**: Dynamic atmospheric braking, skip altitude oscillation, and entry corridor ($\gamma = -5.85^\circ$) dispersion monitoring.
-- **Avcoat Aerothermal Heatmap**: Dynamic 3D thermal vertex shader showing stagnation points reaching 5,000°F (2,760°C).
+- **Avcoat Aerothermal Heatmap**: 3D thermal vertex shader showing stagnation points reaching 5,000°F (2,760°C).
 - **Parachute & Recovery Sequence**: Drogue deployment at 25,000 ft, main parachute reefing at 9,500 ft, ocean wave buoyancy, CMUS airbags, and naval recovery tracking.
 - **Ephemeris Export Suite**: Instant export to standardized **CCSDS OEM**, **Google Earth KML**, and high-resolution **CSV**.
 
 ---
 
-## 📁 Repository Structure
+## 💻 Zero-Glitch Setup & Run Instructions
 
-```plaintext
-├── cad/                 # 3D meshes & CAD geometry (SLS, Orion CM/ESM, Pad 39B)
-├── config/              # SPICE kernels config, timeline profiles, aerodynamic lookups
-├── data/                # Artemis II ephemeris baselines, GMAT benchmarks
-├── docs/                # Mathematical derivations & architecture specifications
-├── gallery_and_media/   # 100+ High-resolution mission screenshots and verification captures
-├── openmct-telemetry/   # NASA Open MCT integration dictionaries & plugins
-├── scripts/             # Master end-to-end execution scripts & verification tests
-├── simulation/          # 6-DoF dynamics, AE9/AP9 radiation, mass depletion engine
-├── spice_kernels/       # Planetary ephemeris kernels (JPL de440s)
-├── telemetry/           # Telemetry schemas, packet definitions, serializers
-├── web/                 # FastAPI server, WebGL Three.js renderers, Audio soundscape
-│   ├── server.py        # Master telemetry server & WebSocket streamer
-│   └── static/          # WebGL 3D engine, shaders, cockpit displays, audio engine
-├── LICENSE              # MIT License
-├── README.md            # Master repository documentation
-├── NASA_RESOURCES_AND_SYSTEM_MANUAL.md # NASA standards & tool directory
-└── PROMPTS_AND_PROJECT_EVOLUTION_LOG.md # Evolution log & prompt history
-```
+Follow these 3 steps to run the simulation cleanly on your laptop:
 
----
-
-## 🚀 Quickstart & Setup
-
-### Prerequisites
-- Python 3.9+
-- Modern WebGL 2.0 compatible browser (Chrome, Edge, Firefox)
-
-### 1. Installation
+### 1. Clone & Install Dependencies
 ```bash
-git clone https://github.com/Elonikhil/NASA-Orion-Artemis-II-Digital-Twin.git
-cd NASA-Orion-Artemis-II-Digital-Twin
-pip install -r requirements.txt
+git clone https://github.com/batturamesh7771-sketch/project-13-nasa-orion-artemis-ii-digital-twin.git
+cd project-13-nasa-orion-artemis-ii-digital-twin
+pip install fastapi uvicorn websockets spiceypy numpy scipy
 ```
-*(Dependencies: `fastapi`, `uvicorn`, `websockets`, `spiceypy`, `numpy`, `scipy`)*
 
-### 2. Launch the Digital Twin
+### 2. Start the Telemetry & Simulation Server
 ```bash
 python -m web.server
 ```
+*(Runs smoothly at `http://127.0.0.1:8000` without any heavy GPU overhead)*
 
-### 3. Access Mission Control
-- **Mission Control Dashboard**: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
-- **3D Fullscreen Theater View**: [http://127.0.0.1:8000/#theater](http://127.0.0.1:8000/#theater)
-- **Trajectory & Ephemeris**: [http://127.0.0.1:8000/#trajectory](http://127.0.0.1:8000/#trajectory)
-- **Abort Modes & Corridor**: [http://127.0.0.1:8000/#settings](http://127.0.0.1:8000/#settings)
+### 3. Open in Browser
+- Open **[http://127.0.0.1:8000/#theater](http://127.0.0.1:8000/#theater)** for the full 3D interactive view.
+- Use **Mouse Left Click / Drag** to rotate Orion in 3D.
+- Use **Scroll Wheel** or **Pinch** to zoom in/out.
+- Use **Right Click / Drag** to pan.
+- Click the **"Toggle UI"** button (top right) to enter full cinematic mode.
 
 ---
 
@@ -116,7 +133,7 @@ python -m web.server
 
 ---
 
-## 📜 License & Author
+## 📜 License & Attribution
 
 - **Author**: **Elonikhil**
 - **License**: Licensed under the [MIT License](LICENSE).
