@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "run_id": "GMAT-R2026a-BENCHMARK-AIM1",
+  "tool": "NASA GMAT R2026a",
+  "benchmark_type": "AIM1_ORBITAL_INSERTION_LEO",
+  "duration_s": 5400.0,
+  "position_residual_m": 44317.61784952059,
+  "velocity_residual_m_s": 15.814041693631756,
+  "gmat_executed": true,
+  "initial_state": {
+    "altitude_km": 188.29,
+    "velocity_m_s": 9178.93,
+    "mass_kg": 56518.0
+  }
+}

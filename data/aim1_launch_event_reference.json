@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "mission": "NASA Artemis II",
+  "vehicle_configuration": "SLS Block 1 with Orion and ICPS",
+  "mission_epoch": {
+    "utc": "2026-04-01T22:35:00Z",
+    "basis": "NASA reported liftoff at 6:35 p.m. EDT on April 1, 2026; EDT is UTC-04:00.",
+    "precision": "minute-level source timestamp; seconds are not known from this source alone",
+    "truth_class": "NASA_PUBLISHED_EVENT",
+    "source_ids": ["NASA_ARTEMIS_II_LAUNCH_DAY_UPDATES"]
+  },
+  "important_note": "This dataset deliberately separates press-kit planned checkpoints from launch-day-published checkpoints and later completed TLI reporting. These are reference events, not continuous telemetry. Do not fabricate continuous state vectors between them or claim they are exact flight truth states.",
+  "vehicle_reference_parameters": [
+    {"parameter": "vehicle_configuration", "value": "SLS Block 1", "unit": "text", "truth_class": "NASA_PUBLISHED_SPEC", "source_id": "NASA_ARTEMIS_II_REFERENCE_GUIDE_2026"},
+    {"parameter": "stack_height", "value": 98.27, "unit": "m", "truth_class": "NASA_PUBLISHED_SPEC", "notes": "322.4 ft; rounded public specification", "source_id": "NASA_ARTEMIS_II_REFERENCE_GUIDE_2026"},
+    {"parameter": "fueled_mass", "value": 2604000, "unit": "kg", "truth_class": "NASA_PUBLISHED_SPEC", "notes": "2,604 metric tonnes; rounded public stack reference, not a detailed propellant timeline", "source_id": "NASA_ARTEMIS_II_REFERENCE_GUIDE_2026"},
+    {"parameter": "unfueled_mass", "value": 1588000, "unit": "kg", "truth_class": "NASA_PUBLISHED_SPEC", "notes": "1,588 metric tonnes; rounded public stack reference, not a component-by-component mass model", "source_id": "NASA_ARTEMIS_II_REFERENCE_GUIDE_2026"},
+    {"parameter": "maximum_thrust", "value": 39144000, "unit": "N", "truth_class": "NASA_PUBLISHED_SPEC", "notes": "39,144 kN / 8.8 million lbf, maximum thrust summary; not a time history", "source_id": "NASA_ARTEMIS_II_REFERENCE_GUIDE_2026"},
+    {"parameter": "launch_thrust", "value": 36787000, "unit": "N", "truth_class": "NASA_PUBLISHED_SPEC", "notes": "36,787 kN / 8.27 million lbf, public launch-thrust summary; not a time history", "source_id": "NASA_ARTEMIS_II_REFERENCE_GUIDE_2026"},
+    {"parameter": "booster_height", "value": 53.9, "unit": "m", "truth_class": "NASA_PUBLISHED_SPEC", "notes": "177 ft per booster", "source_id": "NASA_ARTEMIS_II_REFERENCE_GUIDE_2026"},
+    {"parameter": "booster_diameter", "value": 3.7, "unit": "m", "truth_class": "NASA_PUBLISHED_SPEC", "notes": "12 ft per booster", "source_id": "NASA_ARTEMIS_II_REFERENCE_GUIDE_2026"},
+    {"parameter": "main_configuration", "value": "four RS-25 engines; two five-segment solid rocket boosters; ICPS upper stage", "unit": "text", "truth_class": "NASA_PUBLISHED_SPEC", "source_id": "NASA_ARTEMIS_II_REFERENCE_GUIDE_2026"}
+  ],
+  "countdown_and_launch": [
+    {"event_id": "terminal_count", "event": "Ground launch sequencer begins terminal count", "met_s": -600, "reference_kind": "launch_day_published", "time_precision": "minute-level event label", "source_ids": ["NASA_ARTEMIS_II_LAUNCH_DAY_UPDATES"]},
+    {"event_id": "crew_access_arm_retract", "event": "Crew access arm retract", "met_s": -480, "reference_kind": "launch_day_published", "time_precision": "minute-level event label", "source_ids": ["NASA_ARTEMIS_II_LAUNCH_DAY_UPDATES"]},
+    {"event_id": "rs25_start_command", "event": "Ground launch sequencer commands core-stage engine start", "met_s": -10, "reference_kind": "launch_day_published", "time_precision": "second-level listed event; source does not provide high-rate ignition telemetry", "source_ids": ["NASA_ARTEMIS_II_LAUNCH_DAY_UPDATES"]},
+    {"event_id": "rs25_engine_start", "event": "RS-25 engine startup", "met_s": -6.36, "reference_kind": "launch_day_published", "time_precision": "listed to 0.01 s", "source_ids": ["NASA_ARTEMIS_II_LAUNCH_DAY_UPDATES"]},
+    {"event_id": "liftoff", "event": "Booster ignition, umbilical separation and liftoff", "met_s": 0, "reference_kind": "launch_day_published", "time_precision": "T-0; UTC epoch is minute-level from public article", "source_ids": ["NASA_ARTEMIS_II_LAUNCH_DAY_UPDATES"]}
+  ],
+  "ascent_events": [
+    {"event_id": "tower_clear", "event": "Clears launch tower; roll/pitch maneuver", "launch_day_met_s": 7, "press_kit_planned_met_s": 9, "source_ids": ["NASA_ARTEMIS_II_LAUNCH_DAY_UPDATES", "NASA_ARTEMIS_II_PRESS_KIT"]},
+    {"event_id": "supersonic", "event": "Reaches supersonic speed", "launch_day_met_s": 56, "press_kit_planned_met_s": 56, "source_ids": ["NASA_ARTEMIS_II_LAUNCH_DAY_UPDATES", "NASA_ARTEMIS_II_PRESS_KIT"]},
+    {"event_id": "max_q", "event": "Maximum dynamic pressure", "launch_day_met_s": 72, "press_kit_planned_met_s": 70, "source_ids": ["NASA_ARTEMIS_II_LAUNCH_DAY_UPDATES", "NASA_ARTEMIS_II_PRESS_KIT"]},
+    {"event_id": "srb_separation", "event": "Two solid rocket boosters separate", "launch_day_met_s": 129, "press_kit_planned_met_s": 128, "source_ids": ["NASA_ARTEMIS_II_LAUNCH_DAY_UPDATES", "NASA_ARTEMIS_II_PRESS_KIT"]},
+    {"event_id": "las_jettison", "event": "Launch abort system jettison", "launch_day_met_s": 193, "press_kit_planned_met_s": 198, "source_ids": ["NASA_ARTEMIS_II_LAUNCH_DAY_UPDATES", "NASA_ARTEMIS_II_PRESS_KIT"]},
+    {"event_id": "core_meco", "event": "SLS core-stage main engine cutoff", "launch_day_met_s": 482, "press_kit_planned_met_s": 486, "source_ids": ["NASA_ARTEMIS_II_LAUNCH_DAY_UPDATES", "NASA_ARTEMIS_II_PRESS_KIT"]},
+    {"event_id": "core_separation", "event": "Core stage separates from ICPS/Orion", "launch_day_met_s": 494, "press_kit_planned_met_s": 498, "source_ids": ["NASA_ARTEMIS_II_LAUNCH_DAY_UPDATES", "NASA_ARTEMIS_II_PRESS_KIT"]},
+    {"event_id": "icps_rl10_nozzle_extension", "event": "ICPS RL10 nozzle extension", "launch_day_met_s": null, "press_kit_planned_met_s": 508, "source_ids": ["NASA_ARTEMIS_II_PRESS_KIT"]},
+    {"event_id": "solar_array_deployment", "event": "Orion service-module solar array wings deploy", "launch_day_met_s": null, "press_kit_planned_met_s": 1200, "notes": "Launch-day update reports completed deployment at 6:59 p.m. EDT; relative time derived from minute-level liftoff/update timestamps is approximately 1,440 s, not precise telemetry.", "source_ids": ["NASA_ARTEMIS_II_LAUNCH_DAY_UPDATES", "NASA_ARTEMIS_II_PRESS_KIT"]},
+    {"event_id": "perigee_raise_1", "event": "Early perigee-raise maneuver (press-kit planned timeline)", "launch_day_met_s": null, "press_kit_planned_met_s": 2940, "notes": "Reference event only. See the complete press kit for subsequent orbital events and timeline updates; do not hardcode this planned time as an actual burn epoch.", "source_ids": ["NASA_ARTEMIS_II_PRESS_KIT"]},
+    {"event_id": "apogee_raise", "event": "ICPS apogee-raise burn", "launch_day_met_s": null, "press_kit_planned_met_s": 6477, "source_ids": ["NASA_ARTEMIS_II_PRESS_KIT"]},
+    {"event_id": "orion_icps_separation", "event": "Orion separates from ICPS; proximity operations follow", "launch_day_met_s": null, "press_kit_planned_met_s": 12255, "source_ids": ["NASA_ARTEMIS_II_PRESS_KIT"]},
+    {"event_id": "icps_disposal_burn", "event": "ICPS disposal burn", "launch_day_met_s": null, "press_kit_planned_met_s": 18000, "source_ids": ["NASA_ARTEMIS_II_PRESS_KIT"]},
+    {"event_id": "planned_day1_perigee_raise", "event": "Further perigee-raise maneuver on Flight Day 1 (press-kit timeline)", "launch_day_met_s": null, "press_kit_planned_met_s": 49440, "notes": "13 h 44 min as listed later in press-kit timeline. Keep distinct from the earlier perigee-raise checkpoint; investigate actual flight updates before defining final event records.", "source_ids": ["NASA_ARTEMIS_II_PRESS_KIT"]}
+  ],
+  "tli_reference": {
+    "event_id": "orion_tli_burn",
+    "event": "Orion service-module main engine performs translunar injection",
+    "launch_day_local_start": "2026-04-02T19:49:00-04:00",
+    "utc_start": "2026-04-02T23:49:00Z",
+    "met_s_from_minute_level_launch_epoch": 90840,
+    "reference_precision": "minute-level start time; NASA published burn duration to seconds",
+    "burn_duration_s": 350,
+    "reported_delta_v_ft_s": 1274,
+    "reported_delta_v_m_s_calculated": 388.3152,
+    "delta_v_note": "1,274 ft/s converted with 0.3048 m/ft. This is a reported scalar, not a published full vector; do not invent maneuver direction.",
+    "truth_class": "NASA_PUBLISHED_EVENT",
+    "source_ids": ["NASA_ARTEMIS_II_TLI_COMPLETED", "NASA_ARTEMIS_II_TLI_GO"]
+  },
+  "modeling_rules": [
+    "Keep press-kit planned event times and launch-day-published event references in separate fields.",
+    "Treat event-time targets as validation checkpoints, not as replacement state data.",
+    "Do not infer full position/velocity/attitude histories from event times alone.",
+    "Any calculated event time must identify model version, state, root-finding method, source checkpoint, and residual.",
+    "The post-TLI state passed to AIM 2 must be generated by the same modeled event sequence and numerical state history."
+  ]
+}

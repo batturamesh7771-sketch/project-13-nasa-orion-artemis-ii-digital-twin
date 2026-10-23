@@ -1,0 +1,110 @@
+{
+  "name": "Orion Artemis II Telemetry",
+  "identifier": "orion.telemetry",
+  "measurements": [
+    {
+      "key": "traj.altitude",
+      "name": "Orion Altitude",
+      "units": "km",
+      "format": "float",
+      "min": 0,
+      "max": 450000,
+      "description": "Geodetic / radial altitude above Earth WGS-84 reference ellipsoid",
+      "limits": {
+        "yellow": { "low": 120.0 },
+        "red": { "low": 100.0 }
+      }
+    },
+    {
+      "key": "traj.velocity",
+      "name": "Inertial Velocity",
+      "units": "km/s",
+      "format": "float",
+      "min": 0,
+      "max": 12.0,
+      "description": "Earth-Centered Inertial (ECI J2000) magnitude of velocity vector",
+      "limits": {
+        "yellow": { "high": 11.0 },
+        "red": { "high": 11.2 }
+      }
+    },
+    {
+      "key": "traj.perilune",
+      "name": "Lunar Distance (Perilune)",
+      "units": "km",
+      "format": "float",
+      "min": 1737.4,
+      "max": 410000,
+      "description": "Range from Orion center of mass to lunar center of mass (JPL Horizons DE440)",
+      "limits": {
+        "yellow": { "low": 7600.0 },
+        "red": { "low": 7200.0 }
+      }
+    },
+    {
+      "key": "env.q",
+      "name": "Dynamic Pressure (Q)",
+      "units": "kPa",
+      "format": "float",
+      "min": 0,
+      "max": 50,
+      "description": "Atmospheric freestream dynamic pressure (0.5 * rho * v^2)",
+      "limits": {
+        "yellow": { "high": 35.0 },
+        "red": { "high": 40.0 }
+      }
+    },
+    {
+      "key": "env.temp",
+      "name": "Avcoat Heatshield Temp",
+      "units": "°F",
+      "format": "float",
+      "min": -250,
+      "max": 5500,
+      "description": "Ablative Avcoat honeycomb surface pyrometer stagnation temperature",
+      "limits": {
+        "yellow": { "high": 2500.0 },
+        "red": { "high": 4000.0 }
+      }
+    },
+    {
+      "key": "env.rad",
+      "name": "Radiation Dosage",
+      "units": "mSv/hr",
+      "format": "float",
+      "min": 0,
+      "max": 5.0,
+      "description": "Orion active hybrid radiation sensor dose equivalent rate in Van Allen belt transit",
+      "limits": {
+        "yellow": { "high": 0.5 },
+        "red": { "high": 1.0 }
+      }
+    },
+    {
+      "key": "sys.cabin_press",
+      "name": "Cabin Pressure",
+      "units": "psi",
+      "format": "float",
+      "min": 0,
+      "max": 16.0,
+      "description": "ECLSS regulated pressurized crew module cabin pressure",
+      "limits": {
+        "yellow": { "low": 13.5, "high": 15.2 },
+        "red": { "low": 12.0, "high": 15.8 }
+      }
+    },
+    {
+      "key": "sys.propellant",
+      "name": "ESM Propellant Mass",
+      "units": "kg",
+      "format": "float",
+      "min": 0,
+      "max": 9000,
+      "description": "European Service Module MON-3/MMH usable propellant remaining",
+      "limits": {
+        "yellow": { "low": 1000.0 },
+        "red": { "low": 300.0 }
+      }
+    }
+  ]
+}

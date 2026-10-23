@@ -1,0 +1,26 @@
+# Secrets and Environment Variables
+config/.env
+*.env
+*.env.local
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+venv/
+.venv/
+
+# MATLAB / Simulink artifacts
+*.asv
+*.slxc
+*.autosave
+slprj/
+
+# Blender backup files
+*.blend1
+*.blend2
+
+# OS / Temporary files
+Thumbs.db
+.DS_Store

@@ -1,0 +1,89 @@
+% ==============================================================================
+% NASA General Mission Analysis Tool (GMAT R2026a)
+% Script: artemis2_nominal.script
+% Mission: NASA Artemis II Orion Crewed Free-Return Lunar Mission
+% Target: Earth Parking Orbit -> Trans-Lunar Coast -> Lunar Flyby (Perilune)
+% ==============================================================================
+
+Create Spacecraft OrionArtemis2;
+
+GMAT OrionArtemis2.DateFormat = UTCGregorian;
+GMAT OrionArtemis2.Epoch = '01 Apr 2026 22:35:00.000';
+GMAT OrionArtemis2.CoordinateSystem = EarthMJ2000Eq;
+GMAT OrionArtemis2.DisplayStateType = Cartesian;
+
+% State at Trans-Lunar Injection (TLI cut-off at 185 km perigee, inc = 28.5 deg)
+GMAT OrionArtemis2.X  = 6563.137000000000;
+GMAT OrionArtemis2.Y  = 0.000000000000000;
+GMAT OrionArtemis2.Z  = 0.000000000000000;
+GMAT OrionArtemis2.VX = 0.000000000000000;
+GMAT OrionArtemis2.VY = 9.534898160000000;
+GMAT OrionArtemis2.VZ = 5.177265140000000;
+
+% Spacecraft Mass and Ballistics (Orion CM + ESM at TLI)
+GMAT OrionArtemis2.DryMass = 14000.0;
+GMAT OrionArtemis2.Cd = 2.2;
+GMAT OrionArtemis2.Cr = 1.8;
+GMAT OrionArtemis2.DragArea = 19.863;
+GMAT OrionArtemis2.SRPArea = 19.863;
+
+% ------------------------------------------------------------------------------
+% Force Model: Full High-Fidelity Multi-Body Gravitational Field
+% ------------------------------------------------------------------------------
+Create ForceModel Artemis2ForceModel;
+
+GMAT Artemis2ForceModel.CentralBody = Earth;
+GMAT Artemis2ForceModel.PointMasses = {Earth, Luna, Sun};
+GMAT Artemis2ForceModel.Drag = None;
+GMAT Artemis2ForceModel.SRP = Off;
+GMAT Artemis2ForceModel.RelativisticCorrection = Off;
+GMAT Artemis2ForceModel.ErrorControl = RSSStep;
+
+% ------------------------------------------------------------------------------
+% Propagator: PrinceDormand78 (Embedded 7(8) Adaptive Runge-Kutta)
+% ------------------------------------------------------------------------------
+Create Propagator Artemis2Prop;
+
+GMAT Artemis2Prop.FM = Artemis2ForceModel;
+GMAT Artemis2Prop.Type = PrinceDormand78;
+GMAT Artemis2Prop.InitialStepSize = 60.0;
+GMAT Artemis2Prop.Accuracy = 1e-11;
+GMAT Artemis2Prop.MinStep = 0.001;
+GMAT Artemis2Prop.MaxStep = 1800.0;
+GMAT Artemis2Prop.MaxStepAttempts = 50;
+GMAT Artemis2Prop.StopIfAccuracyIsViolated = true;
+
+% ------------------------------------------------------------------------------
+% Output: Space-delimited CSV State Vectors
+% ------------------------------------------------------------------------------
+Create ReportFile StateVectorsReport;
+
+GMAT StateVectorsReport.Filename = 'GMAT_Artemis2_StateVectors.csv';
+GMAT StateVectorsReport.Precision = 12;
+GMAT StateVectorsReport.Add = {OrionArtemis2.ElapsedSecs, OrionArtemis2.EarthMJ2000Eq.X, OrionArtemis2.EarthMJ2000Eq.Y, OrionArtemis2.EarthMJ2000Eq.Z, OrionArtemis2.EarthMJ2000Eq.VX, OrionArtemis2.EarthMJ2000Eq.VY, OrionArtemis2.EarthMJ2000Eq.VZ, OrionArtemis2.Earth.Altitude, OrionArtemis2.EarthMJ2000Eq.VMAG, OrionArtemis2.Earth.SMA, OrionArtemis2.Earth.ECC, OrionArtemis2.EarthMJ2000Eq.INC, OrionArtemis2.EarthMJ2000Eq.RAAN, OrionArtemis2.Luna.RMAG};
+GMAT StateVectorsReport.WriteHeaders = true;
+GMAT StateVectorsReport.LeftJustify = On;
+GMAT StateVectorsReport.ZeroFill = Off;
+GMAT StateVectorsReport.WriteReport = true;
+
+% ------------------------------------------------------------------------------
+% Output: CCSDS Orbit Ephemeris Message (OEM) Standard
+% ------------------------------------------------------------------------------
+Create EphemerisFile Artemis2OEM;
+
+GMAT Artemis2OEM.Filename = 'GMAT_Artemis2_Ephemeris.oem';
+GMAT Artemis2OEM.FileFormat = CCSDS-OEM;
+GMAT Artemis2OEM.Spacecraft = OrionArtemis2;
+GMAT Artemis2OEM.CoordinateSystem = EarthMJ2000Eq;
+GMAT Artemis2OEM.OutputFormat = LittleEndian;
+GMAT Artemis2OEM.IncludeEventBoundaries = false;
+GMAT Artemis2OEM.StepSize = 300;
+GMAT Artemis2OEM.WriteEphemeris = true;
+
+% ------------------------------------------------------------------------------
+% Mission Sequence
+% ------------------------------------------------------------------------------
+BeginMissionSequence;
+
+% Propagate translunar trajectory through 86,400 s (24 hours)
+Propagate Artemis2Prop(OrionArtemis2) {OrionArtemis2.ElapsedSecs = 86400.0};

@@ -1,0 +1,108 @@
+% ==============================================================================
+% NASA General Mission Analysis Tool (GMAT) Translunar Trajectory Benchmark
+% Mission: Trans-Lunar Injection & Multi-Body Coast for NASA Orion Digital Twin
+% Target Environment: GMAT R2022a / R2026a (Windows 64-bit)
+% ==============================================================================
+%
+% PURPOSE:
+%   Independent external validation of multi-body gravitational propagation
+%   (Earth point mass + Moon third-body gravitation) against the Orion Digital
+%   Twin multi-body propagator (simulation/trajectory/mission_propagator.py).
+%
+% BENCHMARK PARAMETERS:
+%   - Central Body: Earth
+%   - Point Masses: Earth (398600.4415 km^3/s^2), Luna (4902.800582 km^3/s^2)
+%   - Coordinate Frame: EarthMJ2000Eq (Earth Mean Equator and Equinox of J2000)
+%   - Initial State (Post-TLI Injection at 185 km perigee, inc = 28.5 deg):
+%       X  = 6563.136300000000 km
+%       Y  = 0.000000000000000 km
+%       Z  = 0.000000000000000 km
+%       VX = 0.000000000000000 km/s
+%       VY = 9.534898160000000 km/s  (10.850 km/s * cos(28.5 deg))
+%       VZ = 5.177265140000000 km/s  (10.850 km/s * sin(28.5 deg))
+%   - Propagator: PrinceDormand78 (Embedded adaptive RK 7(8))
+%   - Duration: 86400.0 s (1.0 Solar Day)
+% ==============================================================================
+
+% ------------------------------------------------------------------------------
+% 1. Spacecraft Configuration
+% ------------------------------------------------------------------------------
+Create Spacecraft OrionTranslunarSat;
+
+GMAT OrionTranslunarSat.DateFormat = UTCGregorian;
+GMAT OrionTranslunarSat.Epoch = '01 Jan 2026 12:00:00.000';
+GMAT OrionTranslunarSat.CoordinateSystem = EarthMJ2000Eq;
+GMAT OrionTranslunarSat.DisplayStateType = Cartesian;
+
+% Cartesian State Vector [km, km/s]
+GMAT OrionTranslunarSat.X  = 6563.136300000000;
+GMAT OrionTranslunarSat.Y  = 0.000000000000000;
+GMAT OrionTranslunarSat.Z  = 0.000000000000000;
+GMAT OrionTranslunarSat.VX = 0.000000000000000;
+GMAT OrionTranslunarSat.VY = 9.534898160000000;
+GMAT OrionTranslunarSat.VZ = 5.177265140000000;
+
+% Physical Mass and Ballistic Properties
+GMAT OrionTranslunarSat.DryMass = 23198.0;
+GMAT OrionTranslunarSat.Cd = 2.2;
+GMAT OrionTranslunarSat.Cr = 1.8;
+GMAT OrionTranslunarSat.DragArea = 19.863;
+GMAT OrionTranslunarSat.SRPArea = 19.863;
+
+% ------------------------------------------------------------------------------
+% 2. Multi-Body Force Model (Earth + Luna Isolated Point Masses)
+% ------------------------------------------------------------------------------
+Create ForceModel TranslunarForceModel;
+
+GMAT TranslunarForceModel.CentralBody = Earth;
+GMAT TranslunarForceModel.PointMasses = {Earth, Luna};
+GMAT TranslunarForceModel.Drag = None;
+GMAT TranslunarForceModel.SRP = Off;
+GMAT TranslunarForceModel.RelativisticCorrection = Off;
+GMAT TranslunarForceModel.ErrorControl = RSSStep;
+
+% ------------------------------------------------------------------------------
+% 3. Numerical Propagator Setup (PrinceDormand78)
+% ------------------------------------------------------------------------------
+Create Propagator TranslunarProp;
+
+GMAT TranslunarProp.FM = TranslunarForceModel;
+GMAT TranslunarProp.Type = PrinceDormand78;
+GMAT TranslunarProp.InitialStepSize = 60.0;
+GMAT TranslunarProp.Accuracy = 1e-11;
+GMAT TranslunarProp.MinStep = 0.001;
+GMAT TranslunarProp.MaxStep = 1800.0;
+GMAT TranslunarProp.MaxStepAttempts = 50;
+GMAT TranslunarProp.StopIfAccuracyIsViolated = true;
+
+% ------------------------------------------------------------------------------
+% 4. Output Report
+% ------------------------------------------------------------------------------
+Create ReportFile TranslunarReport;
+
+GMAT TranslunarReport.Filename = 'GMAT_Translunar_Benchmark_Output.txt';
+GMAT TranslunarReport.Precision = 16;
+GMAT TranslunarReport.WriteHeaders = true;
+GMAT TranslunarReport.LeftJustify = On;
+GMAT TranslunarReport.ZeroFill = Off;
+GMAT TranslunarReport.ColumnWidth = 24;
+GMAT TranslunarReport.WriteReport = true;
+GMAT TranslunarReport.Add = { ...
+    OrionTranslunarSat.ElapsedSecs, ...
+    OrionTranslunarSat.EarthMJ2000Eq.X, ...
+    OrionTranslunarSat.EarthMJ2000Eq.Y, ...
+    OrionTranslunarSat.EarthMJ2000Eq.Z, ...
+    OrionTranslunarSat.EarthMJ2000Eq.VX, ...
+    OrionTranslunarSat.EarthMJ2000Eq.VY, ...
+    OrionTranslunarSat.EarthMJ2000Eq.VZ, ...
+    OrionTranslunarSat.Earth.RMAG, ...
+    OrionTranslunarSat.Luna.RMAG ...
+};
+
+% ------------------------------------------------------------------------------
+% 5. Mission Sequence Execution
+% ------------------------------------------------------------------------------
+BeginMissionSequence;
+
+% Propagate across 1 full day (86,400 s) of translunar coast
+Propagate TranslunarProp(OrionTranslunarSat) {OrionTranslunarSat.ElapsedSecs = 86400.0};

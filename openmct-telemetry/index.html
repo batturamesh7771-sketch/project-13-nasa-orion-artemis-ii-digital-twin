@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>NASA Open MCT — Orion Artemis II Mission Control Telemetry</title>
+  
+  <link rel="stylesheet" href="/openmct/openmct.css">
+  <link rel="stylesheet" href="/openmct/darkmatterTheme.css">
+  <link rel="icon" type="image/x-icon" href="/openmct/favicons/favicon.ico">
+
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #040914;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    #openmct-app {
+      width: 100%;
+      height: calc(100% - 38px);
+      position: absolute;
+      top: 38px;
+      left: 0;
+    }
+
+    /* Custom NASA Mission Control Bar */
+    .nasa-mct-bar {
+      height: 38px;
+      background: #02060f;
+      border-bottom: 1px solid #0052a3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-sizing: border-box;
+      z-index: 100;
+      position: relative;
+    }
+
+    .mct-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mct-meatball {
+      width: 26px;
+      height: 26px;
+      background: #e03a3e;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 11px;
+      color: #fff;
+      letter-spacing: -0.5px;
+      box-shadow: 0 0 10px rgba(224, 58, 62, 0.4);
+    }
+
+    .mct-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #e6f1ff;
+      letter-spacing: 0.8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mct-badge {
+      font-size: 9px;
+      background: rgba(0, 229, 255, 0.15);
+      border: 1px solid rgba(0, 229, 255, 0.4);
+      color: #00e5ff;
+      padding: 2px 7px;
+      border-radius: 3px;
+      font-family: monospace;
+      font-weight: 700;
+    }
+
+    .mct-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mct-link-btn {
+      background: rgba(0, 102, 204, 0.25);
+      border: 1px solid #0084ff;
+      color: #9cd5ff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mct-link-btn:hover {
+      background: #0084ff;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(0, 132, 255, 0.5);
+    }
+
+    .bridge-indicator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-family: monospace;
+      color: #72ef8c;
+    }
+
+    .bridge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #00e676;
+      box-shadow: 0 0 8px #00e676;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.4; }
+      50% { opacity: 1; }
+      100% { opacity: 0.4; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top NASA Mission Control Branding Header -->
+  <header class="nasa-mct-bar">
+    <div class="mct-left">
+      <div class="mct-meatball">NASA</div>
+      <div class="mct-title">
+        OPEN MCT MISSION CONTROL
+        <span class="mct-badge">ARTEMIS II DIGITAL TWIN</span>
+      </div>
+    </div>
+    <div class="mct-right">
+      <div class="bridge-indicator">
+        <span class="bridge-dot"></span>
+        <span id="bridgeStatusText">BRIDGE: 127.0.0.1:8000 (10 Hz)</span>
+      </div>
+      <a href="http://127.0.0.1:8000/" target="_top" class="mct-link-btn">
+        &larr; MAIN MISSION DASHBOARD
+      </a>
+    </div>
+  </header>
+
+  <!-- Open MCT Root Mount Element -->
+  <div id="openmct-app"></div>
+
+  <!-- Load Official NASA Open MCT Distribution -->
+  <script src="/openmct/openmct.js"></script>
+  <!-- Load Custom Orion Artemis II Telemetry Plugin -->
+  <script src="/orion-plugin.js"></script>
+
+  <script>
+    (function () {
+      console.log('[Open MCT] Initializing NASA Open MCT Application...');
+      openmct.setAssetPath('/openmct');
+
+      // Install core and optional plugins defensively
+      const pluginsToInstall = [
+        'LocalStorage',
+        'MyItems',
+        'Timeline',
+        'UTCTimeSystem',
+        'Autoflow',
+        'BarChart',
+        'ScatterPlot',
+        'SummaryWidget',
+        'Notebook',
+        'LADTable',
+        'FaultManagement'
+      ];
+
+      pluginsToInstall.forEach(p => {
+        if (typeof openmct.plugins[p] === 'function') {
+          openmct.install(openmct.plugins[p]());
+        }
+      });
+
+      if (typeof openmct.plugins.Clock === 'function') {
+        openmct.install(openmct.plugins.Clock({ flagDisplay: 'clock' }));
+      }
+      if (typeof openmct.plugins.Timer === 'function') {
+        openmct.install(openmct.plugins.Timer());
+      }
+      if (typeof openmct.plugins.Theme === 'function') {
+        openmct.install(openmct.plugins.Theme('darkmatterTheme'));
+      }
+
+      // Install Orion Artemis II Telemetry Plugin
+      openmct.install(OrionTelemetryPlugin());
+
+      // Time Conductor Configuration (Start local clock before selecting time system)
+      const launchEpoch = Date.UTC(2026, 3, 1, 22, 35, 0);
+      openmct.time.clock('local', { start: -15 * 60 * 1000, end: 0 });
+      openmct.time.timeSystem('utc');
+      openmct.time.bounds({
+        start: launchEpoch,
+        end: launchEpoch + (24 * 3600 * 1000)
+      });
+
+      // Mount into container
+      openmct.start(document.getElementById('openmct-app'));
+      console.log('[Open MCT] NASA Open MCT running successfully.');
+    })();
+  </script>
+</body>
+</html>

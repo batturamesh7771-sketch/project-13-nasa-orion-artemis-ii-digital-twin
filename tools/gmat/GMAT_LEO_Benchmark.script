@@ -1,0 +1,113 @@
+% ==============================================================================
+% NASA General Mission Analysis Tool (GMAT) Benchmark Script
+% Mission: Low Earth Orbit (LEO) Circular Benchmark for NASA Orion Digital Twin
+% Author: Flight Dynamics & Orbital Verification Team
+% Target Environment: GMAT R2022a / R2026a (Windows 64-bit)
+% ==============================================================================
+%
+% PURPOSE:
+%   Independent external validation of orbital propagation against the
+%   Orion Digital Twin adaptive integrator (simulation/trajectory/adaptive_integrator.py).
+%
+% BENCHMARK PARAMETERS:
+%   - Central Body: Earth (Point-mass gravity isolated)
+%   - Gravitational Parameter (mu): 398600.4415 km^3/s^2
+%   - Coordinate Frame: EarthMJ2000Eq (Earth Mean Equator and Equinox of J2000)
+%   - Semi-Major Axis (SMA = r0): 6778.1363 km (~400.0 km altitude above 6378.1363 km)
+%   - Eccentricity (ECC): 0.000000000000 (Pure circular orbit)
+%   - Inclination (INC): 28.5000000000 deg (Kennedy Space Center launch inclination)
+%   - Right Ascension of Ascending Node (RAAN): 0.0 deg
+%   - Argument of Periapsis (AOP): 0.0 deg
+%   - True Anomaly (TA): 0.0 deg
+%   - Circular Orbital Speed (v_circ = sqrt(mu/r0)): 7.6685585685 km/s (7668.5585685 m/s)
+%   - Analytical Orbital Period (T = 2*pi*sqrt(a^3/mu)): 5553.623413 s (~92.56039 minutes)
+%   - Propagator: PrinceDormand78 (Embedded RK 7(8) adaptive step)
+%   - Perturbations: Isolated point-mass only (No Drag, No SRP, No 3rd-body, No J2)
+% ==============================================================================
+
+% ------------------------------------------------------------------------------
+% 1. Spacecraft Configuration
+% ------------------------------------------------------------------------------
+Create Spacecraft OrionBenchSat;
+
+GMAT OrionBenchSat.DateFormat = UTCGregorian;
+GMAT OrionBenchSat.Epoch = '01 Jan 2026 12:00:00.000';
+GMAT OrionBenchSat.CoordinateSystem = EarthMJ2000Eq;
+GMAT OrionBenchSat.DisplayStateType = Keplerian;
+
+% Orbital Elements (Keplerian)
+GMAT OrionBenchSat.SMA  = 6778.1363;
+GMAT OrionBenchSat.ECC  = 0.000000000000;
+GMAT OrionBenchSat.INC  = 28.5000000000;
+GMAT OrionBenchSat.RAAN = 0.0000000000;
+GMAT OrionBenchSat.AOP  = 0.0000000000;
+GMAT OrionBenchSat.TA   = 0.0000000000;
+
+% Spacecraft Mass and Ballistic Properties (Perturbations disabled, for completeness)
+GMAT OrionBenchSat.DryMass = 9300.0;
+GMAT OrionBenchSat.Cd = 2.2;
+GMAT OrionBenchSat.Cr = 1.8;
+GMAT OrionBenchSat.DragArea = 19.863;
+GMAT OrionBenchSat.SRPArea = 19.863;
+
+% ------------------------------------------------------------------------------
+% 2. Force Model Definition (Isolated Earth Point-Mass)
+% ------------------------------------------------------------------------------
+Create ForceModel EarthPointMassForce;
+
+GMAT EarthPointMassForce.CentralBody = Earth;
+GMAT EarthPointMassForce.PointMasses = {Earth};
+GMAT EarthPointMassForce.Drag = None;
+GMAT EarthPointMassForce.SRP = Off;
+GMAT EarthPointMassForce.RelativisticCorrection = Off;
+GMAT EarthPointMassForce.ErrorControl = RSSStep;
+
+% ------------------------------------------------------------------------------
+% 3. Numerical Propagator Setup
+% ------------------------------------------------------------------------------
+Create Propagator LEOPropagator;
+
+GMAT LEOPropagator.FM = EarthPointMassForce;
+GMAT LEOPropagator.Type = PrinceDormand78;
+GMAT LEOPropagator.InitialStepSize = 10.0;
+GMAT LEOPropagator.Accuracy = 1e-12;
+GMAT LEOPropagator.MinStep = 0.001;
+GMAT LEOPropagator.MaxStep = 60.0;
+GMAT LEOPropagator.MaxStepAttempts = 50;
+GMAT LEOPropagator.StopIfAccuracyIsViolated = true;
+
+% ------------------------------------------------------------------------------
+% 4. Output Subscribers & Data Export
+% ------------------------------------------------------------------------------
+Create ReportFile BenchmarkReport;
+
+GMAT BenchmarkReport.Filename = 'GMAT_LEO_Benchmark_Output.txt';
+GMAT BenchmarkReport.Precision = 16;
+GMAT BenchmarkReport.WriteHeaders = true;
+GMAT BenchmarkReport.LeftJustify = On;
+GMAT BenchmarkReport.ZeroFill = Off;
+GMAT BenchmarkReport.ColumnWidth = 24;
+GMAT BenchmarkReport.WriteReport = true;
+GMAT BenchmarkReport.Add = { ...
+    OrionBenchSat.ElapsedSecs, ...
+    OrionBenchSat.EarthMJ2000Eq.X, ...
+    OrionBenchSat.EarthMJ2000Eq.Y, ...
+    OrionBenchSat.EarthMJ2000Eq.Z, ...
+    OrionBenchSat.EarthMJ2000Eq.VX, ...
+    OrionBenchSat.EarthMJ2000Eq.VY, ...
+    OrionBenchSat.EarthMJ2000Eq.VZ, ...
+    OrionBenchSat.SMA, ...
+    OrionBenchSat.ECC, ...
+    OrionBenchSat.Energy ...
+};
+
+% ------------------------------------------------------------------------------
+% 5. Mission Sequence Execution
+% ------------------------------------------------------------------------------
+BeginMissionSequence;
+
+% Propagate for exactly one analytical orbital period:
+% T = 2 * pi * sqrt( (6778.1363 km)^3 / 398600.4415 km^3/s^2 ) = 5553.623413 seconds
+Propagate 'PropagateOnePeriod' LEOPropagator(OrionBenchSat) {OrionBenchSat.ElapsedSecs = 5553.623413};
+
+% End of script

@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "policy": "Use source-derived geometry and documented assembly scenes. Review actual downloaded files, dimensions, origin, axes, asset-specific usage rules and attribution before use. Do not claim CAD fidelity without measurements.",
+  "assets": [
+    {
+      "asset_id": "sls_block1_visual_base",
+      "name": "NASA Space Launch System Block 1",
+      "source_url": "https://science.nasa.gov/3d-resources/space-launch-system-block-1/",
+      "intended_use": "Primary visual starting point for SLS Block 1 in pad and flight scenes.",
+      "likely_formats_listed_on_source": ["ZIP model downloads; inspect extracted archive for available formats"],
+      "checks_before_integration": ["Confirm model scale against 98.27 m reference height.", "Inspect whether asset includes Orion/ICPS/pad or only a vehicle model.", "Record coordinate axes, forward/up orientation, origin, polygon/material count and units.", "Verify markings/configuration and asset-specific credit/usage guidance.", "Optimize mesh/materials for real-time Three.js without altering the vehicle silhouette materially."],
+      "license_state": "Review NASA 3D Resources usage guidelines and any item-specific notices; store attribution with asset."
+    },
+    {
+      "asset_id": "orion_crew_module_visual_base",
+      "name": "NASA Orion Capsule",
+      "source_url": "https://science.nasa.gov/3d-resources/orion-capsule/",
+      "intended_use": "Crew module for separated-spacecraft, orbital and entry scenes.",
+      "checks_before_integration": ["Confirm STL units and orientation.", "Add or source separate European Service Module and arrays if absent.", "Create a consistent spacecraft body-frame origin; record whether origin is at geometric center or reference point.", "Check heat-shield normal and positive body axes."],
+      "license_state": "Review item-specific usage and attribution guidance."
+    },
+    {
+      "asset_id": "launch_complex_and_vab_scene",
+      "name": "VAB, mobile launcher, crawler and LC-39B scene",
+      "source_url": "https://science.nasa.gov/3d-resources/",
+      "intended_use": "Factory/VAB stacking, rollout and launch-pad scene. Use an available permitted asset or create simplified procedural geometry.",
+      "checks_before_integration": ["Do not claim exact facility dimensions unless independently sourced.", "Use the documented scene sequence; label internal manufacturing details as educational reconstruction.", "Keep flight-vehicle geometry separate from facility visualization."],
+      "license_state": "Search catalog and verify each asset; do not assume a specific VAB/LC-39B model exists in the catalog until downloaded and inspected."
+    }
+  ],
+  "assembly_scene_sequence": [
+    {"scene_id": "manufacturing_parts", "label": "Major hardware components", "status": "documented visual reconstruction", "visuals": ["booster motor segments as discrete parts", "core-stage sections/tanks", "four-engine aft section", "ICPS", "Orion crew module/service module", "launch-abort system"]},
+    {"scene_id": "stack_in_vab", "label": "Vehicle integration and stacking in VAB", "status": "educational reconstruction based on public descriptions/images", "visuals": ["booster pair", "core stage", "upper stage and spacecraft stack", "stack-complete milestone"]},
+    {"scene_id": "rollout", "label": "Mobile launcher rollout", "status": "documented visual reconstruction", "visuals": ["fully integrated vehicle and mobile launcher", "crawler-transporter moving to LC-39B"]},
+    {"scene_id": "pad_ready", "label": "Launch pad and terminal countdown", "status": "sequence from public launch-day material; ground mechanics simplified", "visuals": ["umbilicals and service structures", "crew access arm retract", "terminal count", "RS-25 startup, booster ignition"]},
+    {"scene_id": "flight", "label": "Numerically propagated launch and ascent", "status": "must be driven by actual numerical state model", "visuals": ["vehicle state", "engine plume effects", "stage separations", "telemetry derived from the same state"]}
+  ]
+}

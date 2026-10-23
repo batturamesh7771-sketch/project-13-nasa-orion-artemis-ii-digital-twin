@@ -1,0 +1,58 @@
+% ==============================================================================
+% NASA GMAT Translunar Trajectory Benchmark (Earth Point Mass Isolated)
+% ==============================================================================
+
+Create Spacecraft OrionTranslunarSat;
+GMAT OrionTranslunarSat.DateFormat = UTCGregorian;
+GMAT OrionTranslunarSat.Epoch = '01 Jan 2026 12:00:00.000';
+GMAT OrionTranslunarSat.CoordinateSystem = EarthMJ2000Eq;
+GMAT OrionTranslunarSat.DisplayStateType = Cartesian;
+
+GMAT OrionTranslunarSat.X  = 6563.136300000000;
+GMAT OrionTranslunarSat.Y  = 0.000000000000000;
+GMAT OrionTranslunarSat.Z  = 0.000000000000000;
+GMAT OrionTranslunarSat.VX = 0.000000000000000;
+GMAT OrionTranslunarSat.VY = 9.534898160000000;
+GMAT OrionTranslunarSat.VZ = 5.177265140000000;
+
+GMAT OrionTranslunarSat.DryMass = 23198.0;
+
+Create ForceModel TranslunarForceModel;
+GMAT TranslunarForceModel.CentralBody = Earth;
+GMAT TranslunarForceModel.PointMasses = {Earth};
+GMAT TranslunarForceModel.Drag = None;
+GMAT TranslunarForceModel.SRP = Off;
+GMAT TranslunarForceModel.RelativisticCorrection = Off;
+GMAT TranslunarForceModel.ErrorControl = RSSStep;
+
+Create Propagator TranslunarProp;
+GMAT TranslunarProp.FM = TranslunarForceModel;
+GMAT TranslunarProp.Type = PrinceDormand78;
+GMAT TranslunarProp.InitialStepSize = 60.0;
+GMAT TranslunarProp.Accuracy = 1e-12;
+GMAT TranslunarProp.MinStep = 0.001;
+GMAT TranslunarProp.MaxStep = 1800.0;
+GMAT TranslunarProp.MaxStepAttempts = 50;
+GMAT TranslunarProp.StopIfAccuracyIsViolated = true;
+
+Create ReportFile TranslunarReport;
+GMAT TranslunarReport.Filename = 'GMAT_Translunar_EarthOnly_Output.txt';
+GMAT TranslunarReport.Precision = 16;
+GMAT TranslunarReport.WriteHeaders = true;
+GMAT TranslunarReport.LeftJustify = On;
+GMAT TranslunarReport.ZeroFill = Off;
+GMAT TranslunarReport.ColumnWidth = 24;
+GMAT TranslunarReport.WriteReport = true;
+GMAT TranslunarReport.Add = { ...
+    OrionTranslunarSat.ElapsedSecs, ...
+    OrionTranslunarSat.EarthMJ2000Eq.X, ...
+    OrionTranslunarSat.EarthMJ2000Eq.Y, ...
+    OrionTranslunarSat.EarthMJ2000Eq.Z, ...
+    OrionTranslunarSat.EarthMJ2000Eq.VX, ...
+    OrionTranslunarSat.EarthMJ2000Eq.VY, ...
+    OrionTranslunarSat.EarthMJ2000Eq.VZ, ...
+    OrionTranslunarSat.Earth.RMAG ...
+};
+
+BeginMissionSequence;
+Propagate TranslunarProp(OrionTranslunarSat) {OrionTranslunarSat.ElapsedSecs = 86400.0};

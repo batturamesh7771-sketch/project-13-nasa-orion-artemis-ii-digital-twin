@@ -1,0 +1,7 @@
+﻿Fusion360.exe : QML debugging is enabled. Only use this in a safe environment.
+At line:1 char:1
++ & "C:\Users\user\AppData\Local\Autodesk\webdeploy\production\736d2b4c ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (QML debugging i...fe environment.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

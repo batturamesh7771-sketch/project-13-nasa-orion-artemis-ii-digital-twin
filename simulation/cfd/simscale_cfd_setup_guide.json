@@ -1,0 +1,34 @@
+{
+  "project": "NASA Orion MPCV Re-Entry Aerodynamics",
+  "geometry_file": "orion_capsule_reentry_cfd.stl",
+  "reference_dimensions": {
+    "base_diameter_m": 5.029,
+    "reference_area_A_m2": 19.8634,
+    "reference_length_L_m": 5.029,
+    "height_m": 3.35
+  },
+  "recommended_cfd_setups": {
+    "subsonic_parachute_staging": {
+      "mach_number": 0.4,
+      "velocity_m_s": 136.0,
+      "altitude_m": 7600,
+      "density_kg_m3": 0.525,
+      "temperature_K": 238.5,
+      "simulation_type": "Incompressible / Compressible",
+      "expected_drag_coefficient_Cd": 1.25,
+      "expected_drag_force_N": 120548.5
+    },
+    "supersonic_hypersonic_reentry_trim": {
+      "mach_number": 2.5,
+      "trim_angle_of_attack_deg": -18.0,
+      "expected_lift_to_drag_ratio_LD": 0.28,
+      "simulation_type": "Compressible"
+    }
+  },
+  "virtual_wind_tunnel_box": {
+    "upstream_inlet_distance_m": 15.0,
+    "downstream_wake_outlet_distance_m": 35.0,
+    "spanwise_lateral_distance_m": 20.0,
+    "height_distance_m": 20.0
+  }
+}

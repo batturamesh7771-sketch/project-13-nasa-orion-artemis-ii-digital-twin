@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+</head>
+<body>
+  <iframe id="api-frame" style="width:800px; height:600px;" src="https://sketchfab.com/models/9279b0672f15454b9320a31fceb65508/embed"></iframe>
+  <script>
+    window.sketchfabNodes = null;
+    window.sketchfabReady = false;
+    const iframe = document.getElementById('api-frame');
+    const client = new Sketchfab('1.12.1', iframe);
+    client.init('9279b0672f15454b9320a31fceb65508', {
+      success: function(api) {
+        window.api = api;
+        api.start();
+        api.addEventListener('viewerready', function() {
+          window.sketchfabReady = true;
+          api.getNodeMap(function(err, nodes) {
+            window.sketchfabNodes = nodes;
+          });
+        });
+      },
+      error: function() {
+        window.sketchfabError = true;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+{
+  "mission_metadata": {
+    "mission_name": "NASA Artemis II",
+    "description": "First crewed flight test of the NASA Space Launch System (SLS) and Orion MPCV, conducting a lunar flyby free-return trajectory.",
+    "spacecraft": "Orion MPCV (Crew Module CM-003 + European Service Module ESM-2)",
+    "launch_vehicle": "SLS Block 1 Crew (Core Stage with 4x RS-25D, 2x 5-segment solid rocket boosters, ICPS second stage)",
+    "crew": [
+      {"name": "Reid Wiseman", "role": "Commander", "agency": "NASA"},
+      {"name": "Victor Glover", "role": "Pilot", "agency": "NASA"},
+      {"name": "Christina Koch", "role": "Mission Specialist 1", "agency": "NASA"},
+      {"name": "Jeremy Hansen", "role": "Mission Specialist 2", "agency": "CSA"}
+    ],
+    "nominal_mission_duration_days": 10.0,
+    "nominal_mission_duration_sec": 864000.0,
+    "reference_epoch_utc": "2026-09-15T14:00:00Z",
+    "source_citations": [
+      {
+        "title": "NASA Artemis II Mission Overview & Reference Trajectory",
+        "doc_id": "NASA NP-2023-08-013-JSC",
+        "url": "https://www.nasa.gov/mission/artemis-ii/"
+      },
+      {
+        "title": "Artemis II: The First Crewed Flight of NASA's Artemis Program",
+        "doc_id": "AIAA 2023-0814",
+        "author": "NASA Johnson Space Center Flight Dynamics Division"
+      },
+      {
+        "title": "Orion MPCV Spacecraft Specifications and Operational Parameters",
+        "doc_id": "NASA-STD-3001 / Lockheed Martin Technical Brief",
+        "url": "https://www.nasa.gov/exploration/systems/orion/"
+      }
+    ],
+    "provenance_policy": "All values derived from official NASA public releases and AIAA literature. Reconstructed parameters are marked explicitly with uncertainty bands. Zero synthetic telemetry equations permitted."
+  },
+  "coordinate_frames": {
+    "inertial": {
+      "frame": "EarthMJ2000Eq",
+      "description": "Earth Mean Equator and Equinox of J2000 (primary propagation frame)",
+      "origin": "Earth Center of Mass",
+      "distance_unit": "meters",
+      "velocity_unit": "meters/second"
+    },
+    "lunar_inertial": {
+      "frame": "MoonMJ2000Eq",
+      "description": "Moon-Centered Inertial frame used for lunar flyby perilune evaluation",
+      "origin": "Moon Center of Mass"
+    },
+    "body": {
+      "frame": "OrionBodyFrame",
+      "axes": "+X forward along centerline, +Y out right wing, +Z towards heat shield trim offset",
+      "origin": "Spacecraft Center of Mass"
+    }
+  },
+  "physical_constants": {
+    "mu_earth_m3_s2": 398600441500000.0,
+    "r_earth_m": 6378137.0,
+    "j2_earth": 1.08263e-3,
+    "mu_moon_m3_s2": 4904869500000.0,
+    "r_moon_m": 1737400.0,
+    "g0_m_s2": 9.80665,
+    "speed_of_light_m_s": 299792458.0
+  },
+  "vehicle_configurations": {
+    "launch_stack": {
+      "total_mass_kg": 2603800.0,
+      "core_thrust_vacuum_N": 4448220.0,
+      "srb_thrust_each_N": 16013590.0,
+      "srb_burn_duration_sec": 126.0
+    },
+    "orion_integrated_stack_at_tli": {
+      "description": "Full Orion spacecraft with Crew Module and wet European Service Module",
+      "total_mass_kg": 25618.0,
+      "cm_dry_mass_kg": 9300.0,
+      "esm_dry_mass_kg": 7700.0,
+      "esm_usable_propellant_kg": 8618.0,
+      "ref_area_m2": 19.863,
+      "base_diameter_m": 5.029,
+      "main_engine": {
+        "model": "Aerojet Rocketdyne AJ10-190 (OMS-E)",
+        "thrust_vacuum_N": 26700.0,
+        "isp_vacuum_s": 316.0,
+        "propellant_type": "MON-3 / MMH (hypergolic)"
+      },
+      "aux_engines": {
+        "model": "Aerojet Rocketdyne R-4D-11",
+        "count": 8,
+        "thrust_each_N": 490.0,
+        "isp_vacuum_s": 312.0
+      },
+      "rcs_thrusters": {
+        "count": 12,
+        "thrust_each_N": 160.0,
+        "isp_vacuum_s": 290.0
+      }
+    },
+    "crew_module_entry": {
+      "description": "Crew Module separated from ESM prior to atmospheric entry",
+      "total_mass_kg": 9300.0,
+      "heat_shield": {
+        "material": "Avcoat ablator in honeycomb matrix",
+        "nominal_thickness_m": 0.045,
+        "base_diameter_m": 5.029,
+        "nose_radius_m": 6.000,
+        "structural_bondline_limit_temp_C": 250.0
+      },
+      "aerodynamics": {
+        "hypersonic_trim_aoa_deg": -18.5,
+        "trim_lift_to_drag_ratio": 0.284,
+        "hypersonic_cd": 1.25,
+        "hypersonic_cl": 0.355
+      },
+      "parachutes": {
+        "forward_bay_cover_jettison_alt_m": 7900.0,
+        "drogue_count": 2,
+        "drogue_deploy_alt_m": 7600.0,
+        "drogue_cda_m2": 45.0,
+        "main_count": 3,
+        "main_deploy_alt_m": 2900.0,
+        "main_cda_m2": 2450.0,
+        "terminal_splashdown_velocity_target_m_s": 7.8
+      }
+    }
+  },
+  "chronological_flight_phases": [
+    {
+      "phase_id": 1,
+      "phase_name": "SLS_ASCENT",
+      "start_met_sec": 0.0,
+      "end_met_sec": 484.0,
+      "events": [
+        {"event_name": "LIFTOFF", "met_sec": 0.0, "description": "SLS RS-25 ignition and SRB liftoff from LC-39B"},
+        {"event_name": "MAX_Q", "met_sec": 75.0, "altitude_km": 13.5, "mach": 1.5, "q_dyn_kPa": 41.5},
+        {"event_name": "SRB_JETTISON", "met_sec": 132.0, "altitude_km": 45.0, "velocity_m_s": 1450.0},
+        {"event_name": "FAIRING_JETTISON", "met_sec": 199.0, "description": "3x Service Module fairing panels jettisoned"},
+        {"event_name": "LAS_JETTISON", "met_sec": 205.0, "altitude_km": 91.0, "description": "Launch Abort System tower jettison"},
+        {"event_name": "MECO_AND_CORE_SEP", "met_sec": 484.0, "altitude_km": 165.0, "velocity_m_s": 7750.0, "description": "Main Engine Cutoff; Core Stage separates into disposal trajectory"}
+      ]
+    },
+    {
+      "phase_id": 2,
+      "phase_name": "EARTH_ORBIT_CHECKOUT",
+      "start_met_sec": 484.0,
+      "end_met_sec": 151200.0,
+      "description": "High Earth Orbit checkout and crew proximity handling demo with ICPS",
+      "events": [
+        {"event_name": "SOLAR_WINGS_DEPLOY", "met_sec": 720.0, "stage": "ORION", "description": "Orion 4x solar arrays deployed"},
+        {"event_name": "ICPS_PRM", "met_sec": 3060.0, "stage": "ICPS", "engine": "RL10B-2", "delta_v_m_s": 85.0, "orbit_km": "185 x 2800", "description": "Perigee Raise Maneuver by ICPS"},
+        {"event_name": "ICPS_ARM", "met_sec": 6300.0, "stage": "ICPS", "engine": "RL10B-2", "delta_v_m_s": 2850.0, "orbit_km": "185 x 68000", "description": "Apogee Raise Maneuver by ICPS into High Earth Orbit"},
+        {"event_name": "ORION_ICPS_SEP", "met_sec": 12600.0, "stage": "ORION", "description": "Orion separates from ICPS stage; begins prox ops demo"},
+        {"event_name": "HEO_SYSTEMS_CHECKOUT", "met_sec": 86400.0, "stage": "ORION", "description": "24-42 hour checkout of life support and manual piloting"}
+      ]
+    },
+    {
+      "phase_id": 3,
+      "phase_name": "TRANSLUNAR_INJECTION",
+      "start_met_sec": 151200.0,
+      "end_met_sec": 153000.0,
+      "description": "Trans-Lunar Injection burn to enter lunar free-return trajectory",
+      "events": [
+        {
+          "event_name": "TLI_BURN",
+          "met_sec": 151200.0,
+          "stage": "ORION_ESM",
+          "burn_duration_sec": 510.0,
+          "delta_v_m_s": 1015.0,
+          "engine": "OMS-E + Aux",
+          "propellant_consumed_kg": 2420.0,
+          "post_burn_mass_kg": 23198.0
+        }
+      ]
+    },
+    {
+      "phase_id": 4,
+      "phase_name": "TRANSLUNAR_COAST",
+      "start_met_sec": 153000.0,
+      "end_met_sec": 486000.0,
+      "description": "Outbound coast with barbecue roll and trajectory corrections",
+      "events": [
+        {"event_name": "PTC_ROLL_START", "met_sec": 155000.0, "stage": "ORION", "rate_deg_s": 0.5, "description": "Passive thermal control barbecue roll"},
+        {"event_name": "OTC_1_BURN", "met_sec": 216000.0, "stage": "ORION_ESM", "engine": "Aux", "delta_v_m_s": 15.0, "description": "Outbound Trajectory Correction 1"},
+        {"event_name": "OTC_2_BURN", "met_sec": 360000.0, "stage": "ORION_ESM", "engine": "Aux", "delta_v_m_s": 4.5, "description": "Outbound Trajectory Correction 2"},
+        {"event_name": "LUNAR_SOI_ENTRY", "met_sec": 450000.0, "stage": "ORION", "dist_moon_km": 66100.0, "description": "Enters Lunar gravitational Sphere of Influence"}
+      ]
+    },
+    {
+      "phase_id": 5,
+      "phase_name": "LUNAR_FLYBY",
+      "start_met_sec": 486000.0,
+      "end_met_sec": 540000.0,
+      "description": "Closest approach behind the lunar far side; free-return gravity assist",
+      "events": [
+        {
+          "event_name": "PERILUNE_CLOSEST_APPROACH",
+          "met_sec": 505800.0,
+          "stage": "ORION",
+          "lunar_altitude_km": 7400.0,
+          "uncertainty_km": 250.0,
+          "velocity_rel_moon_m_s": 1850.0,
+          "description": "Orion passes behind the Moon; lunar gravity slingshots trajectory toward Earth"
+        }
+      ]
+    },
+    {
+      "phase_id": 6,
+      "phase_name": "TRANS_EARTH_RETURN",
+      "start_met_sec": 540000.0,
+      "end_met_sec": 863100.0,
+      "description": "Inbound homeward transit targeting narrow atmospheric entry corridor",
+      "events": [
+        {"event_name": "LUNAR_SOI_EXIT", "met_sec": 576000.0, "stage": "ORION", "dist_moon_km": 66100.0},
+        {"event_name": "TCM_1_BURN", "met_sec": 604800.0, "stage": "ORION_ESM", "engine": "Aux", "delta_v_m_s": 8.0},
+        {"event_name": "TCM_2_BURN", "met_sec": 734400.0, "stage": "ORION_ESM", "engine": "Aux", "delta_v_m_s": 3.0},
+        {"event_name": "TCM_3_BURN", "met_sec": 846000.0, "stage": "ORION_ESM", "engine": "Aux", "delta_v_m_s": 1.2, "description": "Final corridor targeting burn"}
+      ]
+    },
+    {
+      "phase_id": 7,
+      "phase_name": "ATMOSPHERIC_SKIP_ENTRY",
+      "start_met_sec": 863100.0,
+      "end_met_sec": 865500.0,
+      "description": "Service Module jettison and lunar skip re-entry through Earth atmosphere",
+      "events": [
+        {"event_name": "CM_SM_SEPARATION", "met_sec": 863100.0, "altitude_km": 1500.0, "description": "Crew Module separates from Service Module"},
+        {"event_name": "ENTRY_INTERFACE_EI400", "met_sec": 864000.0, "altitude_km": 120.0, "velocity_m_s": 11050.0, "gamma_deg": -5.85},
+        {"event_name": "FIRST_ENTRY_DIP", "met_sec": 864220.0, "min_altitude_km": 58.2, "max_g_load": 4.35, "max_heat_flux_W_cm2": 134.0},
+        {"event_name": "EXO_ATMOSPHERIC_SKIP_APOGEE", "met_sec": 864700.0, "altitude_km": 88.4, "velocity_m_s": 7650.0},
+        {"event_name": "SECOND_ENTRY_TERMINAL", "met_sec": 865200.0, "altitude_km": 30.0, "velocity_m_s": 1800.0}
+      ]
+    },
+    {
+      "phase_id": 8,
+      "phase_name": "PARACHUTE_DESCENT_SPLASHDOWN",
+      "start_met_sec": 865500.0,
+      "end_met_sec": 867600.0,
+      "description": "Multi-stage parachute deployment, ocean splashdown, and recovery",
+      "events": [
+        {"event_name": "FBC_JETTISON", "met_sec": 865550.0, "altitude_km": 7.9, "velocity_m_s": 175.0},
+        {"event_name": "DROGUES_DEPLOYED", "met_sec": 865570.0, "altitude_km": 7.6, "chute_count": 2},
+        {"event_name": "MAINS_DEPLOYED", "met_sec": 865720.0, "altitude_km": 2.9, "chute_count": 3, "reefing_stages": 2},
+        {"event_name": "OCEAN_SPLASHDOWN", "met_sec": 866350.0, "altitude_km": 0.0, "velocity_m_s": 7.8, "location": "Pacific Ocean off San Diego coast, CA"}
+      ]
+    }
+  ]
+}

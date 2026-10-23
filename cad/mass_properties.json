@@ -1,0 +1,94 @@
+{
+  "crew_module": {
+    "mass_dry_kg": 9300.0,
+    "height_m": 3.35,
+    "base_diameter_m": 5.029,
+    "top_diameter_m": 1.8,
+    "cg_m": [
+      0.08,
+      0.0,
+      1.25
+    ],
+    "moi_kg_m2": {
+      "Ixx": 28500.0,
+      "Iyy": 28800.0,
+      "Izz": 19400.0
+    }
+  },
+  "heat_shield": {
+    "mass_kg": 850.0,
+    "diameter_m": 5.029,
+    "material": "Avcoat honeycomb composite",
+    "cg_m": [
+      0.0,
+      0.0,
+      -0.12
+    ]
+  },
+  "european_service_module": {
+    "mass_dry_kg": 3800.0,
+    "propellant_usable_kg": 8618.0,
+    "mass_wet_kg": 15460.0,
+    "diameter_m": 5.0,
+    "height_m": 4.0,
+    "cg_m": [
+      0.0,
+      0.0,
+      -2.15
+    ],
+    "moi_kg_m2": {
+      "Ixx": 45000.0,
+      "Iyy": 45000.0,
+      "Izz": 26000.0
+    }
+  },
+  "solar_arrays": {
+    "wing_count": 4,
+    "total_wingspan_m": 19.0,
+    "mass_total_kg": 260.0,
+    "power_output_W": 11200.0,
+    "cg_m": [
+      0.0,
+      0.0,
+      -2.0
+    ]
+  },
+  "launch_abort_system": {
+    "tower_height_m": 15.24,
+    "mass_wet_kg": 7300.0,
+    "cg_m": [
+      0.0,
+      0.0,
+      8.4
+    ]
+  },
+  "assemblies": {
+    "launch_stack": {
+      "total_mass_kg": 35380.0,
+      "cg_m": [
+        0.02,
+        0.0,
+        0.45
+      ],
+      "description": "Full stack: Orion CM + Heat Shield + ESM (wet) + LAS"
+    },
+    "orbital_flight": {
+      "total_mass_kg": 25610.0,
+      "cg_m": [
+        0.03,
+        0.0,
+        -0.85
+      ],
+      "description": "Orbital configuration: CM + Heat Shield + ESM (wet) + 4 Deployed Solar Wings"
+    },
+    "reentry_capsule": {
+      "total_mass_kg": 9300.0,
+      "cg_m": [
+        0.08,
+        0.0,
+        1.25
+      ],
+      "description": "Entry configuration: CM + Heat Shield (post ESM separation)"
+    }
+  }
+}

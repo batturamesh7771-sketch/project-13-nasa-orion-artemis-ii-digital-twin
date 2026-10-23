@@ -1,0 +1,10 @@
+{
+	"autodeskProduct":	"Fusion360",
+	"type":	"script",
+	"author":	"Senior Aerospace Engineer",
+	"description":	{
+		"":	"NASA Orion MPCV Digital Twin: Parametric Assembly (10,000+ detailed elements) with Motion Study Joints (Solar Array Deployment, OMS-E Gimbaling, Staging Separation, LAS Jettison)"
+	},
+	"supportedOS":	"windows|mac",
+	"editEnabled":	true
+}

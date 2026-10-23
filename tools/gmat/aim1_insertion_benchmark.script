@@ -1,0 +1,37 @@
+% NASA GMAT R2026a Script: AIM 1 Post-MECO LEO Insertion Benchmark
+Create Spacecraft OrionICPS;
+GMAT OrionICPS.DateFormat = TAIModJulian;
+GMAT OrionICPS.Epoch = '21545';
+GMAT OrionICPS.CoordinateSystem = EarthMJ2000Eq;
+GMAT OrionICPS.DisplayStateType = Cartesian;
+GMAT OrionICPS.X = 2725.07630000;
+GMAT OrionICPS.Y = -5136.53050000;
+GMAT OrionICPS.Z = 3050.89030000;
+GMAT OrionICPS.VX = 8.47271000;
+GMAT OrionICPS.VY = 3.49599000;
+GMAT OrionICPS.VZ = -0.49398000;
+GMAT OrionICPS.DryMass = 56518.0;
+
+Create ForceModel EarthJ2Prop_ForceModel;
+GMAT EarthJ2Prop_ForceModel.CentralBody = Earth;
+GMAT EarthJ2Prop_ForceModel.PointMasses = {Earth};
+GMAT EarthJ2Prop_ForceModel.Drag = None;
+GMAT EarthJ2Prop_ForceModel.SRP = Off;
+GMAT EarthJ2Prop_ForceModel.ErrorControl = RSSStep;
+
+Create Propagator EarthJ2Prop;
+GMAT EarthJ2Prop.FM = EarthJ2Prop_ForceModel;
+GMAT EarthJ2Prop.Type = PrinceDormand78;
+GMAT EarthJ2Prop.InitialStepSize = 10;
+GMAT EarthJ2Prop.Accuracy = 1e-11;
+GMAT EarthJ2Prop.MinStep = 0.001;
+GMAT EarthJ2Prop.MaxStep = 60;
+
+Create ReportFile BenchmarkReport;
+GMAT BenchmarkReport.Filename = 'E:/NASA/GMAT-R2026a/output/AIM1_Insertion_GMAT_Report.txt';
+GMAT BenchmarkReport.Precision = 16;
+GMAT BenchmarkReport.Add = {OrionICPS.ElapsedSecs, OrionICPS.EarthMJ2000Eq.X, OrionICPS.EarthMJ2000Eq.Y, OrionICPS.EarthMJ2000Eq.Z, OrionICPS.EarthMJ2000Eq.VX, OrionICPS.EarthMJ2000Eq.VY, OrionICPS.EarthMJ2000Eq.VZ};
+GMAT BenchmarkReport.WriteHeaders = false;
+
+BeginMissionSequence;
+Propagate EarthJ2Prop(OrionICPS) {OrionICPS.ElapsedSecs = 5400.0};

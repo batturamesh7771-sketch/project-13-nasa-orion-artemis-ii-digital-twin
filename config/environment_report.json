@@ -1,0 +1,36 @@
+{
+  "system": {
+    "os": "Windows 10 (10.0.19045)",
+    "architecture": "AMD64",
+    "processor": "Intel64 Family 6 Model 61 Stepping 4, GenuineIntel",
+    "logical_cpus": 4,
+    "ram_gb": 7.92,
+    "python_version": "3.14.5"
+  },
+  "tools": {
+    "matlab": {
+      "path": "E:\\Program Files\\MATLAB\\R2026a\\bin\\matlab.exe",
+      "exists": true,
+      "version": "R2026a"
+    },
+    "blender": {
+      "path": "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe",
+      "exists": true,
+      "version": "Blender 5.2.1 LTS"
+    }
+  },
+  "nasa_api": {
+    "endpoint": "api.nasa.gov",
+    "status_code": 200,
+    "success": true,
+    "key_masked": "6bCg...Ttg7"
+  },
+  "jpl_horizons": {
+    "endpoint": "ssd.jpl.nasa.gov (Horizons)",
+    "status_code": 200,
+    "success": true,
+    "target": "Moon (301) from Earth Center",
+    "source_verified": true
+  },
+  "phase_1_ready": true
+}

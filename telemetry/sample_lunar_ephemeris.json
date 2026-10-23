@@ -1,0 +1,41 @@
+{
+  "target": "Moon (301)",
+  "center": "Earth Geocenter (399)",
+  "record_count": 2,
+  "records": [
+    {
+      "julian_date": 2461327.5,
+      "utc_date": "2026-Oct-14 00:00:00.0000 TDB",
+      "position_m": {
+        "x": -204440271.095923,
+        "y": -341729969.25371194,
+        "z": -35486936.763403654,
+        "distance_km": 399793.0952539916
+      },
+      "velocity_mps": {
+        "vx": 826.2481113071248,
+        "vy": -534.736120680085,
+        "vz": -1.375973836986122,
+        "speed_mps": 984.1903034995707
+      },
+      "provenance": "[EPHEMERIS DATA: NASA JPL Horizons]"
+    },
+    {
+      "julian_date": 2461328.5,
+      "utc_date": "2026-Oct-15 00:00:00.0000 TDB",
+      "position_m": {
+        "x": -128935995.6686931,
+        "y": -379599008.55023587,
+        "z": -34772291.76253657,
+        "distance_km": 402404.0389283118
+      },
+      "velocity_mps": {
+        "vx": 914.4836979418538,
+        "vy": -339.0411349216081,
+        "vz": 17.791839292195117,
+        "speed_mps": 975.4721290307269
+      },
+      "provenance": "[EPHEMERIS DATA: NASA JPL Horizons]"
+    }
+  ]
+}
