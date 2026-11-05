@@ -6,8 +6,8 @@
 <h3 align="center">High-Fidelity Physics-Driven Mission Control & 6-DoF Flight Simulation</h3>
 
 <p align="center">
-  <a href="http://127.0.0.1:8000/"><img src="https://img.shields.io/badge/⚡_LIVE_WEBGL_MISSION_CONTROL-OPEN_SIMULATION-00e5ff?style=for-the-badge&logo=googlechrome&logoColor=black" alt="Live WebGL Simulation" /></a>
-  <a href="http://127.0.0.1:8000/#theater"><img src="https://img.shields.io/badge/🎬_FULLSCREEN_3D_THEATER-EXPLORE-ff007f?style=for-the-badge&logo=three.js&logoColor=white" alt="3D Theater View" /></a>
+  <a href="https://batturamesh7771-sketch.github.io/project-13-nasa-orion-artemis-ii-digital-twin/"><img src="https://img.shields.io/badge/⚡_PERMANENT_LIVE_WEBGL_DASHBOARD-LAUNCH_ONLINE-00e5ff?style=for-the-badge&logo=googlechrome&logoColor=black" alt="Permanent Live WebGL Simulation" /></a>
+  <a href="https://batturamesh7771-sketch.github.io/project-13-nasa-orion-artemis-ii-digital-twin/#theater"><img src="https://img.shields.io/badge/🎬_PERMANENT_3D_THEATER-FULLSCREEN_3D-ff007f?style=for-the-badge&logo=three.js&logoColor=white" alt="Permanent 3D Theater View" /></a>
 </p>
 
 <p align="center">
@@ -15,24 +15,24 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" /></a>
   <a href="#"><img src="https://img.shields.io/badge/NASA-GMAT%20%7C%20SPICE%20%7C%20OpenMCT-0b3d91?style=for-the-badge&logo=nasa" alt="NASA Standards" /></a>
   <a href="#"><img src="https://img.shields.io/badge/WebGL-Three.js%20PBR%20Engine-ff6600?style=for-the-badge&logo=three.js" alt="Three.js Engine" /></a>
-  <a href="#"><img src="https://img.shields.io/badge/Telemetry-10%20Hz%20FastAPI%20WebSockets-009688?style=for-the-badge&logo=fastapi" alt="Telemetry" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/Hosting-GitHub%20Pages%2024%2F7-success?style=for-the-badge&logo=githubpages" alt="Permanent Hosting" /></a>
 </p>
 
 ---
 
-## ⚡ Direct Quick-Access Testing Links (Local Dev Server)
+## ⚡ Permanent 24/7 Live WebGL Simulation Links (Click & Load Instantly Anywhere)
 
-> [!TIP]
-> Run `python -m web.server` from your terminal to launch the real-time simulation backend. Then click any direct link below to test the WebGL cockpit, theater, and telemetry dashboards smoothly:
+> [!IMPORTANT]
+> **No installation or local Python server required!** The entire 3D WebGL digital twin, glass cockpit avionics, mission timeline, and ephemeris suite run 100% in the browser. Anyone on any laptop or phone worldwide can simply click the links below to test the full simulation smoothly:
 
-| View Section | Direct URL | Description & Key Features |
+| View Section | Permanent Public URL | Description & Key Features |
 |:---|:---|:---|
-| 🎛️ **Mission Control Dashboard** | [`http://127.0.0.1:8000/`](http://127.0.0.1:8000/) | Live 10 Hz telemetry gauges, timeline sequence, flight status HUD, and audio toggle. |
-| 🎬 **3D Theater Fullscreen Simulation** | [`http://127.0.0.1:8000/#theater`](http://127.0.0.1:8000/#theater) | Full-screen PBR 3D viewport with multi-touch zoom, pan, free orbit, and "Toggle UI" mode. |
-| 🚀 **Mission Timeline & Liftoff (AIM 1)** | [`http://127.0.0.1:8000/#mission`](http://127.0.0.1:8000/#mission) | SLS Launch Complex 39B, SRB separation, core stage MECO, and parking orbit insertion. |
-| 🌌 **Trajectory & Performance (AIM 2)** | [`http://127.0.0.1:8000/#trajectory`](http://127.0.0.1:8000/#trajectory) | Earth-Moon cislunar orbit, pericynthion flyby, and Deep Space Network (DSN) tracking. |
-| 🔥 **Settings, Abort Modes & Skip Reentry** | [`http://127.0.0.1:8000/#settings`](http://127.0.0.1:8000/#settings) | Avcoat 5,000°F aerothermal heatmap, Flight Path Angle ($\gamma$) corridor chart & AA-2 abort. |
-| 📊 **Data Validation & Ephemeris Export** | [`http://127.0.0.1:8000/#data`](http://127.0.0.1:8000/#data) | One-click export to **CCSDS OEM**, **Google Earth KML**, and high-resolution **CSV**. |
+| 🎛️ **Mission Control Dashboard** | [**Launch Live Dashboard**](https://batturamesh7771-sketch.github.io/project-13-nasa-orion-artemis-ii-digital-twin/) | Live telemetry gauges, timeline sequence, flight status HUD, and audio toggle. |
+| 🎬 **3D Theater Fullscreen Simulation** | [**Launch 3D Theater View**](https://batturamesh7771-sketch.github.io/project-13-nasa-orion-artemis-ii-digital-twin/#theater) | Full-screen PBR 3D viewport with multi-touch zoom, pan, free orbit, and "Toggle UI" mode. |
+| 🚀 **Mission Timeline & Liftoff (AIM 1)** | [**Launch AIM 1 Liftoff**](https://batturamesh7771-sketch.github.io/project-13-nasa-orion-artemis-ii-digital-twin/#mission) | SLS Launch Complex 39B, SRB separation, core stage MECO, and parking orbit insertion. |
+| 🌌 **Trajectory & Performance (AIM 2)** | [**Launch AIM 2 Earth-Moon**](https://batturamesh7771-sketch.github.io/project-13-nasa-orion-artemis-ii-digital-twin/#trajectory) | Earth-Moon cislunar orbit, pericynthion flyby, and Deep Space Network (DSN) tracking. |
+| 🔥 **Settings, Abort Modes & Skip Reentry** | [**Launch AIM 3 Reentry & Aborts**](https://batturamesh7771-sketch.github.io/project-13-nasa-orion-artemis-ii-digital-twin/#settings) | Avcoat 5,000°F aerothermal heatmap, Flight Path Angle ($\gamma$) corridor chart & AA-2 abort. |
+| 📊 **Data Validation & Ephemeris Export** | [**Launch Data & Exports**](https://batturamesh7771-sketch.github.io/project-13-nasa-orion-artemis-ii-digital-twin/#data) | Direct download of **CCSDS OEM**, **Google Earth KML**, and high-resolution **CSV**. |
 
 ---
 
