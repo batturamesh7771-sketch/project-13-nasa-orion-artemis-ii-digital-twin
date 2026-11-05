@@ -108,7 +108,7 @@ class OrionOrbit3D {
   _buildEarth() {
     const loader = new THREE.TextureLoader();
     const texture = loader.load(
-      '/static/textures/earth_map.png',
+      'static/textures/earth_map.png',
       () => this.renderer.render(this.scene, this.camera),
       undefined,
       () => {}
@@ -144,7 +144,7 @@ class OrionOrbit3D {
   _buildMoon() {
     const loader = new THREE.TextureLoader();
     const texture = loader.load(
-      '/static/textures/moon_map.png',
+      'static/textures/moon_map.png',
       () => this.renderer.render(this.scene, this.camera),
       undefined,
       () => {}

@@ -178,7 +178,7 @@ class ArtemisMasterMission3D {
     this.earthGroup.position.copy(this.earthPos);
 
     const textureLoader = new THREE.TextureLoader();
-    const earthTex = textureLoader.load('/static/textures/earth_map.png');
+    const earthTex = textureLoader.load('static/textures/earth_map.png');
     earthTex.colorSpace = THREE.SRGBColorSpace;
 
     const earthGeo = new THREE.SphereGeometry(this.earthRadius, 64, 48);
@@ -266,11 +266,11 @@ class ArtemisMasterMission3D {
     // Accurate Moon axial tilt 1.543 deg relative to ecliptic normal
     this.moonGroup.rotation.z = 1.543 * (Math.PI / 180.0);
 
-    const lroColorTex = textureLoader.load('/static/assets/textures/moon/lroc_color.jpg', undefined, undefined, () => {
-      return textureLoader.load('/static/textures/moon_map.png');
+    const lroColorTex = textureLoader.load('static/assets/textures/moon/lroc_color.jpg', undefined, undefined, () => {
+      return textureLoader.load('static/textures/moon_map.png');
     });
     lroColorTex.colorSpace = THREE.SRGBColorSpace;
-    const lolaBumpTex = textureLoader.load('/static/assets/textures/moon/lola_bump.jpg');
+    const lolaBumpTex = textureLoader.load('static/assets/textures/moon/lola_bump.jpg');
 
     const moonGeo = new THREE.SphereGeometry(this.moonRadius, 128, 128);
     const moonMat = new THREE.MeshStandardMaterial({

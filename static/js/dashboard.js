@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!r.ok) throw new Error('API unavailable');
       return r.json();
     })
-    .catch(() => fetch('/static/data/time_series.json').then(r => r.json()))
+    .catch(() => fetch('static/data/time_series.json').then(r => r.json()))
     .then(data => {
       timeSeriesData = data.time_series || [];
       renderTrajectoryPerformanceChart(currentPerfMetric, 0.0);
@@ -2490,7 +2490,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (err) {}
 
       if (!data) {
-        const staticRes = await fetch('/static/data/abort_modes.json');
+        const staticRes = await fetch('static/data/abort_modes.json');
         const allAborts = await staticRes.json();
         data = allAborts[abortType.toLowerCase()];
       }
